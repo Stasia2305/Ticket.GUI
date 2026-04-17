@@ -1,6 +1,8 @@
 package com.moviemanagerexam.ticketgui.bll;
 
 import com.moviemanagerexam.ticketgui.be.User;
+import com.moviemanagerexam.ticketgui.dal.mock.MockEventDAO;
+import com.moviemanagerexam.ticketgui.dal.mock.MockUserDAO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +16,7 @@ public class BLLFacadeTest {
 
     @BeforeEach
     public void setUp() {
-        bllFacade = new BLLFacade();
+        bllFacade = new BLLFacade(new MockUserDAO(), new MockEventDAO(), new TicketLogic());
     }
 
     @Test

@@ -19,35 +19,41 @@ public class LoginController {
     @FXML
     private PasswordField txtPassword;
 
-    private BLLFacade bllFacade = new BLLFacade();
+    private final BLLFacade bllFacade = new BLLFacade();
 
     @FXML
     private void handleLogin(ActionEvent event) {
-        String username = txtUsername.getText();
+        String username = txtUsername.getText().trim();
         String password = txtPassword.getText();
+
+        if (username.isBlank() || password.isBlank()) {
+            showAlert("Missing information", "Please enter both username and password.");
+            return;
+        }
 
         try {
             User user = bllFacade.login(username, password);
             if (user != null) {
-                // Navigate based on role
                 loadMainView(user);
             } else {
-                showAlert("Error", "Invalid username or password.");
+                showAlert("Login failed", "Invalid username or password.");
             }
         } catch (Exception e) {
-            showAlert("Error", "An error occurred during login: " + e.getMessage());
+            showAlert("Login error", "An error occurred during login: " + e.getMessage());
         }
     }
 
     private void loadMainView(User user) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/moviemanagerexam/ticketgui/main-view.fxml"));
         Parent root = loader.load();
-        
-        // Passing user to controller if needed (refactored MainController)
-        // ...
+
+        Object controller = loader.getController();
+        if (controller instanceof com.moviemanagerexam.ticketgui.MainController mainController) {
+            mainController.setCurrentUser(user);
+        }
 
         Stage stage = (Stage) txtUsername.getScene().getWindow();
-        stage.setScene(new Scene(root));
+        stage.setScene(new Scene(root, 1280, 720));
         stage.show();
     }
 

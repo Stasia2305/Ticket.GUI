@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MockUserDAO implements IUserDAO {
-    private List<User> users = new ArrayList<>();
+    private final List<User> users = new ArrayList<>();
 
     public MockUserDAO() {
         users.add(new User(1, "admin", "admin", User.Role.ADMIN));
@@ -16,11 +16,18 @@ public class MockUserDAO implements IUserDAO {
 
     @Override
     public List<User> getAllUsers() {
-        return users;
+        return new ArrayList<>(users);
     }
 
     @Override
-    public User createUser(String username, String password, User.Role role) {
+    public User createUser(String username, String password, User.Role role) throws Exception {
+        boolean exists = users.stream()
+                .anyMatch(user -> user.getUsername().equalsIgnoreCase(username));
+
+        if (exists) {
+            throw new Exception("Username already exists.");
+        }
+
         User user = new User(users.size() + 1, username, password, role);
         users.add(user);
         return user;

@@ -11,11 +11,11 @@ public class DBConnector {
 
     public DBConnector() {
         dataSource = new SQLServerDataSource();
-        dataSource.setServerName("127.0.0.1"); // Placeholder
-        dataSource.setDatabaseName("TicketSystem"); // Placeholder
-        dataSource.setUser("user"); // Placeholder
-        dataSource.setPassword("password"); // Placeholder
-        dataSource.setPortNumber(1433);
+        dataSource.setServerName(readConfig("db.server", "DB_SERVER", "127.0.0.1"));
+        dataSource.setDatabaseName(readConfig("db.name", "DB_NAME", "TicketSystem"));
+        dataSource.setUser(readConfig("db.user", "DB_USER", "sa"));
+        dataSource.setPassword(readConfig("db.password", "DB_PASSWORD", ""));
+        dataSource.setPortNumber(Integer.parseInt(readConfig("db.port", "DB_PORT", "1433")));
         dataSource.setTrustServerCertificate(true);
     }
 
@@ -30,5 +30,19 @@ public class DBConnector {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    private String readConfig(String propertyKey, String envKey, String defaultValue) {
+        String propertyValue = System.getProperty(propertyKey);
+        if (propertyValue != null && !propertyValue.isBlank()) {
+            return propertyValue;
+        }
+
+        String envValue = System.getenv(envKey);
+        if (envValue != null && !envValue.isBlank()) {
+            return envValue;
+        }
+
+        return defaultValue;
     }
 }

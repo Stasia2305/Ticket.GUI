@@ -1,0 +1,110 @@
+.root {
+    -fx-base: #1e1e2e;
+    -fx-accent: #89b4fa;
+    -fx-default-button: #89b4fa;
+    -fx-focus-color: #89b4fa;
+    -fx-faint-focus-color: #89b4fa22;
+}
+
+.sidebar {
+    -fx-background-color: #181825;
+    -fx-padding: 20px;
+    -fx-spacing: 10px;
+}
+
+.sidebar-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #cdd6f4;
+    -fx-font-size: 14px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-cursor: hand;
+    -fx-padding: 10px 15px;
+    -fx-background-radius: 5px;
+}
+
+.sidebar-button:hover {
+    -fx-background-color: #313244;
+}
+
+.sidebar-button.active {
+    -fx-background-color: #45475a;
+    -fx-text-fill: #89b4fa;
+}
+
+.content-area {
+    -fx-background-color: #1e1e2e;
+    -fx-padding: 30px;
+}
+
+.header-text {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #cdd6f4;
+}
+
+.sub-header-text {
+    -fx-font-size: 16px;
+    -fx-text-fill: #a6adc8;
+}
+
+.card {
+    -fx-background-color: #313244;
+    -fx-background-radius: 10px;
+    -fx-padding: 20px;
+    -fx-spacing: 15px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 5);
+}
+
+.ticket-card {
+    -fx-background-color: #45475a;
+    -fx-padding: 15px;
+    -fx-background-radius: 8px;
+    -fx-border-color: #585b70;
+    -fx-border-width: 1px;
+    -fx-border-radius: 8px;
+}
+
+.event-card {
+    -fx-background-color: #313244;
+    -fx-padding: 20px;
+    -fx-spacing: 10px;
+    -fx-background-radius: 12px;
+}
+
+.action-button {
+    -fx-background-color: #89b4fa;
+    -fx-text-fill: #11111b;
+    -fx-font-weight: bold;
+    -fx-padding: 8px 20px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.action-button:hover {
+    -fx-background-color: #b4befe;
+}
+
+.secondary-button {
+    -fx-background-color: #45475a;
+    -fx-text-fill: #cdd6f4;
+    -fx-padding: 8px 20px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.secondary-button:hover {
+    -fx-background-color: #585b70;
+}
+
+.text-input {
+    -fx-background-color: #181825;
+    -fx-text-fill: #cdd6f4;
+    -fx-prompt-text-fill: #6c7086;
+    -fx-highlight-fill: #89b4fa;
+    -fx-border-color: #313244;
+    -fx-border-radius: 5px;
+}
+
+.text-input:focused {
+    -fx-border-color: #89b4fa;
+}
